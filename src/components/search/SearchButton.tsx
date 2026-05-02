@@ -11,10 +11,10 @@ const SearchButton = () => {
     };
 
     return (
-        <div className="absolute bottom-12 right-12 bg-primary-bg flex items-center border border-primary-fg rounded-3xl">
+        <div className={`${isSearchBarOpen ? "bg-white dark:bg-primary-fg-dark" : "bg-primary-bg dark:bg-primary-bg-dark"}  flex items-center border border-primary-fg rounded-3xl dark:text-primary-bg`}>
             {isSearchBarOpen && <SearchBar />}
             <button
-                className="text-3xl group hover:bg-primary-fg-dark cursor-pointer rounded-3xl p-5 transition duration-300 ease-in-out"
+                className="text-2xl group hover:bg-primary-fg dark:hover:bg-primary-bg-dark cursor-pointer rounded-3xl p-2 transition duration-300 ease-in-out"
                 onClick={() => toggleSearch()}
             >
                 {isSearchBarOpen ? (

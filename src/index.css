@@ -1,16 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 @source "../node_modules/react-tailwindcss-datepicker/dist/index.esm.js";
 
 @theme {
     --color-primary-bg: #faf9f5;
+    --color-primary-bg-dark: #2a2623;
     --color-primary-fg: #a99985;
-    --color-primary-fg-dark: #857766;
+    --color-primary-fg-dark: #36312d;
+    --color-primary-fg-bold: #857766;
     --color-primary-fg-faded: #f4ebe0;
-    --color-primary-500: #3b82f6;
-    --color-primary-600: #2563eb;
-    --color-primary-900: #1e3a8a;
+    --color-off-red: #e6c8cc;
+    --color-off-green: #c5ddd0;
+    --color-off-yellow: #ecdfb5;
     --font-primary: 'Comfortaa', sans-serif;
     --font-secondary: 'Nunito', sans-serif;
-    --font-special: "Fredoka", sans-serif;
+    --font-special: 'Kodchasan', sans-serif;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 2px;
+    height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #b6a58f;
+    border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #8f806d;
 }

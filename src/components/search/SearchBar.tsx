@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react';
 
 const SearchBar = () => {
-    const [searchQuarry, setSearchQuarry] = useState('');
+    const [searchQuarry, setSearchQuarry] = useState<string>('');
 
     useEffect(() => {
         console.log(searchQuarry);
     }, [searchQuarry]);
 
     return (
-        <>
-            <input
-                type="text"
-                className="border-b border-primary-fg p-2 mx-8 h-10 w-50 outline-none focus:border-b focus:border-gray-700 font-bold"
-                value={searchQuarry}
-                onChange={(e) => {
-                    setSearchQuarry(e.target.value);
-                }}
-            />
-        </>
+        <input
+            type="text"
+            className="p-2 mx-8 h-10 w-50 outline-none font-bold"
+            value={searchQuarry}
+            onChange={(e) => {
+                setSearchQuarry(e.target.value);
+            }}
+        />
     );
 };
 
