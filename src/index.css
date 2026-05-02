@@ -1,1 +1,16 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import 'tailwindcss';
+@source "../node_modules/react-tailwindcss-datepicker/dist/index.esm.js";
+
+@theme {
+    --color-primary-bg: #faf9f5;
+    --color-primary-fg: #a99985;
+    --color-primary-fg-dark: #857766;
+    --color-primary-fg-faded: #f4ebe0;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-900: #1e3a8a;
+    --font-primary: 'Comfortaa', sans-serif;
+    --font-secondary: 'Nunito', sans-serif;
+    --font-special: "Fredoka", sans-serif;
+}
