@@ -32,7 +32,7 @@ const ToDoCard = ({ item }: ToDoCardProps) => {
                 </div>
                 <div className="flex justify-center items-center">
                     <p className="font-special text-xl dark:text-primary-bg font-bold">
-                        FINITO
+                        {item.state ? "FINITO" : "NITO"}
                     </p>
                 </div>
             </div>

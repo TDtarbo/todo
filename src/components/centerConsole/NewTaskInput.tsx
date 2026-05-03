@@ -7,7 +7,7 @@ const NewTaskInput = () => {
     return (
         <input
             type="text"
-            className=" mx-8 h-10 w-100 outline-none font-bold dark:text-primary-bg text-lg"
+            className=" mx-8 h-10 w-100 outline-none font-bold dark:text-primary-bg text-md"
             value={searchQuarry}
             placeholder="New Task? Just put it here"
             onChange={(e) => {
