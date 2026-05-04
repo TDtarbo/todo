@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const SearchBar = () => {
+type InputRefType = {
+    inputRef: React.RefObject<HTMLInputElement | null>;
+};
+
+const SearchBar = ({ inputRef }: InputRefType) => {
     const [searchQuarry, setSearchQuarry] = useState<string>('');
 
     useEffect(() => {
@@ -10,7 +14,8 @@ const SearchBar = () => {
     return (
         <input
             type="text"
-            className="p-2 mx-8 h-10 w-50 outline-none font-bold"
+            className="p-2 mx-8 h-10 w-100 outline-none font-bold"
+            ref={inputRef}
             value={searchQuarry}
             onChange={(e) => {
                 setSearchQuarry(e.target.value);

@@ -1,16 +1,49 @@
 import { FaFlag } from 'react-icons/fa';
-import type { listItem } from './ToDoList';
+import type { ElementSize, listItem, PriorityType } from './ToDoList';
+import { useState } from 'react';
+import ContextMenu from './ContextMenu';
 
 type ToDoCardProps = {
     item: listItem;
+    todoListSize: ElementSize;
+};
+
+export type ClientCursorType = {
+    clientX: number;
+    clientY: number;
 };
 
 const getShortDate = () => {};
 
-const ToDoCard = ({ item }: ToDoCardProps) => {
+const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
+    const [isContextMenuOpen, setIsContextMenuOpen] = useState<boolean>(false);
+    const [clientCursor, setClientCursor] = useState<ClientCursorType>({
+        clientX: 0,
+        clientY: 0,
+    });
+
+    const toggleContextMenu = () => {
+        setIsContextMenuOpen((pre) => !pre);
+    };
+
+    const getPriorityColor = (priority: PriorityType): string => {
+        if (priority == 'low') {
+            return 'text-off-green';
+        } else if (priority == 'mid') {
+            return 'text-off-yellow';
+        } else return 'text-off-red';
+    };
+
     return (
-        <>
-            <div className="flex justify-between gap-14 rounded-3xl min-h-26 p-6 hover:bg-white cursor-pointer dark:hover:bg-primary-fg-dark">
+        <div>
+            <div
+                className="flex justify-between gap-14 rounded-3xl min-h-26 p-6 hover:bg-white cursor-pointer dark:hover:bg-primary-fg-dark"
+                onContextMenu={(e) => {
+                    e.preventDefault();
+                    setClientCursor({ clientX: e.clientX, clientY: e.clientY });
+                    toggleContextMenu();
+                }}
+            >
                 <div className="flex flex-col justify-center items-center">
                     <p className="uppercase font-extrabold text-gray-400 dark:text-primary-bg text-sm tracking-widest">
                         sat
@@ -27,17 +60,28 @@ const ToDoCard = ({ item }: ToDoCardProps) => {
                         <p className="text-sm text-gray-400 dark:text-primary-bg inline">
                             San 2, 2.40pm{' '}
                         </p>
-                        <FaFlag className="text-off-green" />
+                        {item.priority && (
+                            <FaFlag
+                                className={`${getPriorityColor(item.priority)}`}
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="flex justify-center items-center">
                     <p className="font-special text-xl dark:text-primary-bg font-bold">
-                        {item.state ? "FINITO" : "NITO"}
+                        {item.isCompleted ? 'FINITO' : 'NITO'}
                     </p>
                 </div>
             </div>
             <div className="bg-primary-fg-faded w-full h-px dark:bg-primary-fg-dark" />
-        </>
+            {isContextMenuOpen && (
+                <ContextMenu
+                    cursor={clientCursor}
+                    toggleContextMenu={toggleContextMenu}
+                    todoListSize={todoListSize}
+                />
+            )}
+        </div>
     );
 };
 

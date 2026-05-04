@@ -3,7 +3,7 @@ import Header from './Header';
 
 const ToDoContainer = () => {
     return (
-        <div className="rounded-xl py-10">
+        <div className="h-[88vh] flex flex-col items-center justify-between">
             <Header />
             <ToDoList />
         </div>

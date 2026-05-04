@@ -7,7 +7,7 @@ const Header = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
     return (
-        <div className="flex w-full justify-between items-center mb-12">
+        <div className="flex w-full justify-between items-center h-[5vh] mt-[2vh]">
             <SearchButton />
             <div className="flex gap-5">
                 <button className="group hover:bg-primary-fg size-10 fl cursor-pointer flex items-center justify-center transition rounded-full">

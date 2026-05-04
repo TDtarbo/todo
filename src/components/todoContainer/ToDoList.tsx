@@ -1,71 +1,114 @@
+import { useEffect, useRef, useState } from 'react';
 import ToDoCard from './ToDoCard';
+
+export type PriorityType = 'low' | 'mid' | 'high';
 
 export type listItem = {
     id: number;
     title: string;
-    description?: string;
-    state: boolean;
+    isCompleted: boolean;
+    dueDate?: Date;
+    timestamp?: Date;
+    priority?: PriorityType;
+    tag?: string;
 };
 
 const listItems: listItem[] = [
     {
         id: 1,
         title: 'Finish React todo UI',
-        state: false,
+        isCompleted: false,
+        priority: 'low',
     },
     {
         id: 2,
         title: 'Add task filtering',
-        state: false,
+        isCompleted: false,
+        priority: 'high',
     },
     {
         id: 3,
         title: 'Review Tailwind styles',
-        state: true,
+        isCompleted: true,
+        priority: 'mid',
     },
     {
         id: 4,
         title: 'Connect local storage',
-        state: false,
+        isCompleted: false,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
     {
         id: 5,
         title: 'Refactor components',
-        state: true,
+        isCompleted: true,
     },
 ];
 
+export type ElementSize = {
+    width: number;
+    height: number;
+    top: number;
+};
+
 const ToDoList = () => {
+    const todoListRef = useRef<HTMLDivElement | null>(null);
+
+    const [todoListSize, setTodoListSize] = useState<ElementSize>({
+        width: 0,
+        height: 0,
+        top: 0,
+    });
+
+    useEffect(() => {
+        if (!todoListRef.current) return;
+
+        const size = todoListRef.current.getBoundingClientRect();
+
+        const newSize = {
+            width: size.width,
+            height: size.height,
+            top: size.top,
+        };
+
+        setTodoListSize(newSize);
+    }, []);
+
     return (
-        <div className="relative my-10 h-[70vh]">
-            <div className="flex flex-col gap-1 h-full overflow-y-scroll custom-scrollbar pb-20">
+        <div className="relative flex w-full h-[70vh]" ref={todoListRef}>
+            <div className="flex flex-col gap-1 w-full h-full overflow-y-scroll custom-scrollbar pb-20">
                 {listItems.map((item, index) => {
-                    return <ToDoCard key={index} item={item} />;
+                    return (
+                        <ToDoCard
+                            key={index}
+                            item={item}
+                            todoListSize={todoListSize}
+                        />
+                    );
                 })}
             </div>
 
