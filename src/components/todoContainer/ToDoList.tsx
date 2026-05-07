@@ -99,7 +99,7 @@ const ToDoList = () => {
     }, []);
 
     return (
-        <div className="relative flex w-full h-[70vh]" ref={todoListRef}>
+        <div className="relative flex w-full h-[58vh]" ref={todoListRef}>
             <div className="flex flex-col gap-1 w-full h-full overflow-y-scroll custom-scrollbar pb-20">
                 {listItems.map((item, index) => {
                     return (

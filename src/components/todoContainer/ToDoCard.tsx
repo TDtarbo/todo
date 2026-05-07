@@ -34,6 +34,12 @@ const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
         } else return 'text-off-red';
     };
 
+    const playSuccess = () => {
+        const successAudio = new Audio('s_02.mp3');
+        successAudio.volume = 0.1;
+        successAudio.play();
+    };
+
     return (
         <div>
             <div
@@ -42,6 +48,9 @@ const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
                     e.preventDefault();
                     setClientCursor({ clientX: e.clientX, clientY: e.clientY });
                     toggleContextMenu();
+                }}
+                onClick={() => {
+                    playSuccess();
                 }}
             >
                 <div className="flex flex-col justify-center items-center">
@@ -53,7 +62,7 @@ const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
                     </p>
                 </div>
                 <div className="flex-1 flex flex-col justify-center gap-4">
-                    <p className="text-xl dark:text-primary-bg font-bold">
+                    <p className="text-xl text-primary-fg-bold dark:text-primary-bg font-bold">
                         {item.title}
                     </p>
                     <div className="flex items-center gap-5">
@@ -68,7 +77,7 @@ const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center">
-                    <p className="font-special text-xl dark:text-primary-bg font-bold">
+                    <p className="font-special text-xl text-primary-fg-bold dark:text-primary-bg font-bold">
                         {item.isCompleted ? 'FINITO' : 'NITO'}
                     </p>
                 </div>
