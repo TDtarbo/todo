@@ -35,7 +35,7 @@ const ToDoCard = ({ item, todoListSize }: ToDoCardProps) => {
     };
 
     const playSuccess = () => {
-        const successAudio = new Audio('s_02.mp3');
+        const successAudio = new Audio('done.mp3');
         successAudio.volume = 0.1;
         successAudio.play();
     };
