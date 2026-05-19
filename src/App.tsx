@@ -1,6 +1,7 @@
-import CenterConsole from './components/centerConsole/CenterConsole';
-import Header from './components/Header';
-import ToDoContainer from './components/todoContainer/ToDoContainer';
+import CenterConsole from "./components/centerConsole/CenterConsole";
+import Header from "./components/Header";
+import ToDoContainer from "./components/todoContainer/ToDoContainer";
+
 
 function App() {
     return (
