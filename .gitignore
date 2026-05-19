@@ -27,4 +27,4 @@ release
 .prettierrc
 .vscode
 .env
-
+app.db

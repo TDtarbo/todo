@@ -5,10 +5,13 @@
     "type": "module",
     "main": "dist-electron/main/main.js",
     "scripts": {
+        "predev": "rm -rf dist-electron",
         "dev": "concurrently \"vite\" \"tsc -p tsconfig.electron.json --watch\" \"wait-on http://localhost:5173 dist-electron/main/main.js && electron .\"",
         "build": "vite build && tsc -p tsconfig.electron.json",
         "dist:win": "npm run build && electron-builder --win nsis",
-        "dist:win-portable": "npm run build && electron-builder --win portable"
+        "dist:win-portable": "npm run build && electron-builder --win portable",
+        "dbserver": "npx drizzle-kit studio",
+        "updatedb": "npx drizzle-kit push"
     },
     "build": {
         "appId": "com.finito.todo",
@@ -29,8 +32,8 @@
         }
     },
     "dependencies": {
+        "@libsql/client": "^0.15.15",
         "@tailwindcss/vite": "^4.2.4",
-        "better-sqlite3": "^12.10.0",
         "dayjs": "^1.11.20",
         "dotenv": "^17.4.2",
         "drizzle-orm": "^0.45.2",
@@ -42,14 +45,13 @@
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
-        "@types/better-sqlite3": "^7.6.13",
         "@types/electron": "^1.4.38",
         "@types/node": "^24.12.4",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^6.0.1",
         "concurrently": "^9.2.1",
-        "drizzle-kit": "^0.18.1",
+        "drizzle-kit": "^0.31.10",
         "electron": "^42.1.0",
         "electron-builder": "^26.0.12",
         "eslint": "^10.2.1",

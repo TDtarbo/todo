@@ -1,7 +1,10 @@
-import Database from 'better-sqlite3';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/libsql';
 
-const sqlite3 = new Database('app.db');
-const dataBase = drizzle(sqlite3);
+const client = createClient({
+    url: 'file:app.db',
+});
+
+const dataBase = drizzle(client);
 
 export default dataBase;
