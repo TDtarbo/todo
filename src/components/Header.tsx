@@ -14,6 +14,11 @@ const Header = () => {
         localStorage.setItem('darkMode', JSON.stringify(isDarkMode));
     }, [isDarkMode]);
 
+    const handleSettingsClick = async () => {
+        const message = await window.api.getMessage();
+        window.alert(message);
+    };
+
     return (
         <header className="flex justify-between items-center h-[6vh]">
             <div>
@@ -36,7 +41,10 @@ const Header = () => {
                     )}
                 </button>
 
-                <IoSettingsOutline className="text-3xl text-primary-fg cursor-pointer" />
+                <IoSettingsOutline
+                    className="text-3xl text-primary-fg cursor-pointer"
+                    onClick={handleSettingsClick}
+                />
             </div>
         </header>
     );

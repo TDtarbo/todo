@@ -1,11 +1,18 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import 'dotenv/config';
 import path from 'path';
+import './ipc/test.js';
 
 const isDev = !app.isPackaged;
 const rendererHtmlPath = path.resolve(app.getAppPath(), 'dist', 'index.html');
-const rendererDevUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://localhost:5173';
-
+const rendererDevUrl =
+    process.env.VITE_DEV_SERVER_URL ?? 'http://localhost:5173';
+const preloadPath = path.resolve(
+    app.getAppPath(),
+    'dist-electron',
+    'preload',
+    'preload.cjs',
+);
 Menu.setApplicationMenu(null);
 
 const createWindow = (): void => {
@@ -13,6 +20,7 @@ const createWindow = (): void => {
         width: 1200,
         height: 800,
         webPreferences: {
+            preload: preloadPath,
             contextIsolation: true,
             nodeIntegration: false,
         },
@@ -23,6 +31,8 @@ const createWindow = (): void => {
     } else {
         win.loadFile(rendererHtmlPath);
     }
+
+    win.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
